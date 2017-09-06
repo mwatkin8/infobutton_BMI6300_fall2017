@@ -2,7 +2,7 @@
 
 A mock EHR website coupled with HL7-compliant RESTful requests to OpenInfobutton, along with a display for the OpenInfobutton response.  Grading will be based on the EHR mockup, placement of infobutton/links on the EHR, functional HL7-compliant infobutton RESTful requests, and successful parsing/display of the OpenInfobutton XML/JSON response. 
 
-##Case Vignette
+#Case Vignette
 
 Frank is a 64-year old male with coronary artery disease, who came to his physician’s office with angina symptoms. Having quit smoking at age 50, after 20 years at a pack a week, he seemed to be in excellent health. However, about two years ago he was diagnosed with angina and given a prescription for aspirin (81 mg/day), simvastatin (40 mg/day), and a recommendation for lifestyle change. At that time he started an exercise regimen and a reduced fat diet. Despite these lifestyle changes, six months ago he noted that episodes of chest pain increased to about once or twice per week. These episodes were precipitated by exercise or stress and relieved by rest. But recently the angina episodes have increased to several times per week. Last week a stress echocardiogram demonstrated anterior wall ischemia and a coronary angiography/stenting (PCI) is recommended. 
 
