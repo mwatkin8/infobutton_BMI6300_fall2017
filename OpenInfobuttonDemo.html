@@ -2,8 +2,8 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
-  <title>OpenInfobutton</title>
-  <link rel="shortcut icon" type="image/x-icon" href="http://lite.bmi.utah.edu/images/infobutton_icon.png">
+  <title>Cerner_Infobutton</title>
+  <link rel="shortcut icon" type="image/x-icon" href="http://lite.bmi.utah.edu/images/infobutton_icon.png?v=2">
   <link href="css/sp.css" rel="stylesheet" type="text/css">
   <script src="js/script.js" type="text/javascript"></script><script type="text/javascript">
   var arrConcept = [];
@@ -120,106 +120,107 @@
 <body>
   <div id="shadow">
     <div id="shadow2">
-      <div id="header"></div>
-      <div id="main">
-        <h2>Electronic Health Record
-          <select name="organizationId" id="organizationId">
-            <option selected="selected" value="medicaldecisionmaking.org">medicaldecisionmaking.org</option>
-            <option value="1.3.6.1.4.1.3768">Veterans Administration</option>
-            <option value="1.3.6.1.4.1.3768.97">Salt Lake City VAMC</option>
-            <option value="1.3.6.1.4.1.3768.86">Portland VAMC</option>
-            <option value="1.3.6.1.4.1.4275">Duke University Health System</option>
-            <option value="1.3.6.1.4.1.150">University of Washington</option>
-            <option value="1.3.6.1.4.1.5884">University of Utah</option>
-            <option value="1.3.6.1.4.1.88">NYU</option>
-            <option value="2.16.840.1.113883.3.1951">Northwestern University</option>
-            <option value="http://lvhn.org">Lehigh Valley Health Network</option>
 
-          </select>
-          Information audience
-          <select name="performerId" id="performerId">
-            <option selected="selected" value="PROV">Healthcare provider</option>
-            <option value="PAT">Patient</option>
-          </select>
-        </h2>
-        <table>
-          <tbody><tr>
-            <td class="label">Age</td><td><input id="age" value="47" size="2" name="age"></td>
-          </tr>
-          <tr>
-            <td class="label">Gender</td><td><select id="gender" value="F" name="gender"><option selected="selected" value="F">F</option><option value="M">M</option></select></td>
-          </tr>
-          <tr>
-            <td class="label">Problem list</td><td>
-              <ul>
+
+      <table>
+        <tbody><tr>
+          <td id="header"></td>
+          <td id="main">
+            <h2>Electronic Health Record
+              <select name="organizationId" id="organizationId">
+                <option selected="selected" value="medicaldecisionmaking.org">medicaldecisionmaking.org</option>
+                <option value="1.3.6.1.4.1.3768">Veterans Administration</option>
+              </select>
+            </br>Information Audience
+            <select name="performerId" id="performerId">
+              <option selected="selected" value="PROV">Healthcare Provider</option>
+              <option value="PAT">Patient</option>
+            </select>
+          </h2>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <table>
+    <tbody>
+      <tr>
+        <td class="label">Age</td><td><input id="age" value="64" size="2" name="age"></td>
+      </tr>
+      <tr>
+        <td class="label">Gender</td><td><select id="gender" value="M" name="gender"><option selected="selected" value="M">M</option><option value="F">F</option></select></td>
+      </tr>
+      <tr>
+        <td class="label">Problem list</td><td>
+          <ul>
+            <li>
+              <font style="font-color:red;font-weight:bold;font-size:12pt;font-family:arial"></font> Heart Failure<a href="#" onclick="callIM(gender.value, age.value, 'PROBLISTREV', '84114007', '');"> <img title="OpenInfobutton" src="images/infobutton_icon.png"> </a>
+            </li>
+            <li>
+              <font style="font-color:red;font-weight:bold;font-size:12pt;font-family:arial"></font> Post traumatic stress disorder<a href="#" onclick="callIM(gender.value, age.value, 'PROBLISTREV', '47505003', '');"> <img title="OpenInfobutton" src="images/infobutton_icon.png"> </a>
+            </li>
+            <li>
+              <font style="font-color:red;font-weight:bold;font-size:12pt;font-family:arial"></font> Gastroesophageal reflux<a href="#" onclick="callIM(gender.value, age.value, 'PROBLISTREV', '235595009', '');"> <img title="OpenInfobutton" src="images/infobutton_icon.png"> </a>
+            </li>
+            <li>
+              <font style="font-color:red;font-weight:bold;font-size:12pt;font-family:arial"></font> Diabetes mellitus type 2<a href="#" onclick="callIM(gender.value, age.value, 'PROBLISTREV', '44054006', '');"> <img title="OpenInfobutton" src="images/infobutton_icon.png"> </a>
+            </li>
+            <li>
+              <font style="font-color:red;font-weight:bold;font-size:12pt;font-family:arial"></font> Migraine<a href="#" onclick="callIM(gender.value, age.value, 'PROBLISTREV', '37796009', '');"> <img title="OpenInfobutton" src="images/infobutton_icon.png"> </a>
+            </li>
+            <li>Add problem<select name="problem" id="problem"><option selected="selected" value="237.7">Neurofibromatosis type 1</option><option value="446.6">Wegeners Granulomatosis</option><option value="595.9">Cystitis</option><option value="372.00">Acute Conjunctivitis</option></select><a href="#" onclick="callIM(gender.value, age.value, 'PROBLISTREV', problem.value, '');"> <img title="OpenInfobutton" src="images/infobutton_icon.png"> </a>
+            </li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td class="label">Medications</td><td>
+          <ul>
+            <font style="font-color:red;font-weight:bold;font-size:12pt;font-family:arial"></font> Rosuvastatin (Crestor), 20 Mg, Tablet, Oral<a href="#" onclick="callIM(gender.value, age.value, 'MLREV', '301542', '');"> <img title="OpenInfobutton" src="images/infobutton_icon.png"> </a>
+
+            <li>
+              <font style="font-color:red;font-weight:bold;font-size:12pt;font-family:arial"></font> Linagliptin (Tradjenta), 5 Mg, Tablet, Oral<a href="#" onclick="callIM(gender.value, age.value, 'MLREV', '1100699', '');"> <img title="OpenInfobutton" src="images/infobutton_icon.png"> </a>
+            </li>
+            <li>
+              <font style="font-color:red;font-weight:bold;font-size:12pt;font-family:arial"></font> Warfarin (Coumadin) 7.5Mg, Tablet, Oral<a href="#" onclick="callIM(gender.value, age.value, 'MLREV', '855346', '');"> <img title="OpenInfobutton" src="images/infobutton_icon.png"> </a>
+            </li>
+            <li>
+              <font style="font-color:red;font-weight:bold;font-size:12pt;font-family:arial"></font> Clopidogrel 300 MG Oral Tablet<a href="#" onclick="callIM(gender.value, age.value, 'MLREV', '749196', '');"> <img title="OpenInfobutton" src="images/infobutton_icon.png"> </a>
+            </li>
+            <li>
+              <font style="font-color:red;font-weight:bold;font-size:12pt;font-family:arial"></font> Amoxicillin 500 MG Oral Tablet<a href="#" onclick="callIM(gender.value, age.value, 'MLREV', '308192', '');"> <img title="OpenInfobutton" src="images/infobutton_icon.png"> </a>
+            </li>
+
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td class="label">Lab results</td><td>
+          <ul>
+            <li>
+              Serum digoxin 1.5 mg/dl <font style="font-color:red;font-weight:bold;font-size:12pt;font-family:arial">N</font>
+              <a href="#" onclick="callIM(gender.value, age.value, 'LABRREV', '10535-3', 'N');"> <img title="OpenInfobutton" src="images/infobutton_icon.png"> </a>
+            </li>
+            <li>
+              Total cholesterol 300 mg/dl<font style="font-color:red;font-weight:bold;font-size:12pt;font-family:arial">H</font> <a href="#" onclick="callIM(gender.value, age.value, 'LABRREV', '9342-7', 'H');"> <img title="OpenInfobutton" src="images/infobutton_icon.png"> </a>
+            </li>
+            <li>
+              K 2.8 mEq/l <font style="font-color:red;font-weight:bold;font-size:12pt;font-family:arial">L</font> <a href="#" onclick="callIM(gender.value, age.value, 'LABRREV', '2823-3', 'L');"> <img title="OpenInfobutton" src="images/infobutton_icon.png"> </a></li>
+              <li>
+                Na 127 mEq/l <font style="font-color:red;font-weight:bold;font-size:12pt;font-family:arial">L</font> <a href="#" onclick="callIM(gender.value, age.value, 'LABRREV', '2951-2', 'L');"> <img title="OpenInfobutton" src="images/infobutton_icon.png"> </a></li>
                 <li>
-                  <font style="font-color:red;font-weight:bold;font-size:12pt;font-family:arial"></font> Heart Failure<a href="#" onclick="callIM(gender.value, age.value, 'PROBLISTREV', '84114007', '');"> <img title="OpenInfobutton" src="images/infobutton_icon.png"> </a>
+                  C Reactive Protein 555 ug/dl <font style="font-color:red;font-weight:bold;font-size:12pt;font-family:arial">H</font> <a href="#" onclick="callIM(gender.value, age.value, 'LABRREV', '1988-5', 'H');"> <img title="OpenInfobutton" src="images/infobutton_icon.png"> </a>
                 </li>
                 <li>
-                  <font style="font-color:red;font-weight:bold;font-size:12pt;font-family:arial"></font> Post traumatic stress disorder<a href="#" onclick="callIM(gender.value, age.value, 'PROBLISTREV', '47505003', '');"> <img title="OpenInfobutton" src="images/infobutton_icon.png"> </a>
-                </li>
-                <li>
-                  <font style="font-color:red;font-weight:bold;font-size:12pt;font-family:arial"></font> Gastroesophageal reflux<a href="#" onclick="callIM(gender.value, age.value, 'PROBLISTREV', '235595009', '');"> <img title="OpenInfobutton" src="images/infobutton_icon.png"> </a>
-                </li>
-                <li>
-                  <font style="font-color:red;font-weight:bold;font-size:12pt;font-family:arial"></font> Diabetes mellitus type 2<a href="#" onclick="callIM(gender.value, age.value, 'PROBLISTREV', '44054006', '');"> <img title="OpenInfobutton" src="images/infobutton_icon.png"> </a>
-                </li>
-                <li>
-                  <font style="font-color:red;font-weight:bold;font-size:12pt;font-family:arial"></font> Migraine<a href="#" onclick="callIM(gender.value, age.value, 'PROBLISTREV', '37796009', '');"> <img title="OpenInfobutton" src="images/infobutton_icon.png"> </a>
-                </li>
-                <li>Add problem<select name="problem" id="problem"><option selected="selected" value="237.7">Neurofibromatosis type 1</option><option value="446.6">Wegeners Granulomatosis</option><option value="595.9">Cystitis</option><option value="372.00">Acute Conjunctivitis</option></select><a href="#" onclick="callIM(gender.value, age.value, 'PROBLISTREV', problem.value, '');"> <img title="OpenInfobutton" src="images/infobutton_icon.png"> </a>
+                  HbA1c 8.2% <font style="font-color:red;font-weight:bold;font-size:12pt;font-family:arial">H</font> <a href="#" onclick="callIM(gender.value, age.value, 'LABRREV', '4548-4', 'H');"> <img title="OpenInfobutton" src="images/infobutton_icon.png"> </a>
                 </li>
               </ul>
             </td>
           </tr>
-          <tr>
-            <td class="label">Medications</td><td>
-              <ul>
-                <font style="font-color:red;font-weight:bold;font-size:12pt;font-family:arial"></font> Rosuvastatin (Crestor), 20 Mg, Tablet, Oral<a href="#" onclick="callIM(gender.value, age.value, 'MLREV', '301542', '');"> <img title="OpenInfobutton" src="images/infobutton_icon.png"> </a>
-
-                <li>
-                  <font style="font-color:red;font-weight:bold;font-size:12pt;font-family:arial"></font> Linagliptin (Tradjenta), 5 Mg, Tablet, Oral<a href="#" onclick="callIM(gender.value, age.value, 'MLREV', '1100699', '');"> <img title="OpenInfobutton" src="images/infobutton_icon.png"> </a>
-                </li>
-                <li>
-                  <font style="font-color:red;font-weight:bold;font-size:12pt;font-family:arial"></font> Warfarin (Coumadin) 7.5Mg, Tablet, Oral<a href="#" onclick="callIM(gender.value, age.value, 'MLREV', '855346', '');"> <img title="OpenInfobutton" src="images/infobutton_icon.png"> </a>
-                </li>
-                <li>
-                  <font style="font-color:red;font-weight:bold;font-size:12pt;font-family:arial"></font> Clopidogrel 300 MG Oral Tablet<a href="#" onclick="callIM(gender.value, age.value, 'MLREV', '749196', '');"> <img title="OpenInfobutton" src="images/infobutton_icon.png"> </a>
-                </li>
-                <li>
-                  <font style="font-color:red;font-weight:bold;font-size:12pt;font-family:arial"></font> Amoxicillin 500 MG Oral Tablet<a href="#" onclick="callIM(gender.value, age.value, 'MLREV', '308192', '');"> <img title="OpenInfobutton" src="images/infobutton_icon.png"> </a>
-                </li>
-
-              </ul>
-            </td>
-          </tr>
-          <tr>
-            <td class="label">Lab results</td><td>
-              <ul>
-                <li>
-                  Serum digoxin 1.5 mg/dl <font style="font-color:red;font-weight:bold;font-size:12pt;font-family:arial">N</font>
-                  <a href="#" onclick="callIM(gender.value, age.value, 'LABRREV', '10535-3', 'N');"> <img title="OpenInfobutton" src="images/infobutton_icon.png"> </a>
-                </li>
-                <li>
-                  Total cholesterol 300 mg/dl<font style="font-color:red;font-weight:bold;font-size:12pt;font-family:arial">H</font> <a href="#" onclick="callIM(gender.value, age.value, 'LABRREV', '9342-7', 'H');"> <img title="OpenInfobutton" src="images/infobutton_icon.png"> </a>
-                </li>
-                <li>
-                  K 2.8 mEq/l <font style="font-color:red;font-weight:bold;font-size:12pt;font-family:arial">L</font> <a href="#" onclick="callIM(gender.value, age.value, 'LABRREV', '2823-3', 'L');"> <img title="OpenInfobutton" src="images/infobutton_icon.png"> </a></li>
-                  <li>
-                    Na 127 mEq/l <font style="font-color:red;font-weight:bold;font-size:12pt;font-family:arial">L</font> <a href="#" onclick="callIM(gender.value, age.value, 'LABRREV', '2951-2', 'L');"> <img title="OpenInfobutton" src="images/infobutton_icon.png"> </a></li>
-                    <li>
-                      C Reactive Protein 555 ug/dl <font style="font-color:red;font-weight:bold;font-size:12pt;font-family:arial">H</font> <a href="#" onclick="callIM(gender.value, age.value, 'LABRREV', '1988-5', 'H');"> <img title="OpenInfobutton" src="images/infobutton_icon.png"> </a>
-                    </li>
-                    <li>
-                      HbA1c 8.2% <font style="font-color:red;font-weight:bold;font-size:12pt;font-family:arial">H</font> <a href="#" onclick="callIM(gender.value, age.value, 'LABRREV', '4548-4', 'H');"> <img title="OpenInfobutton" src="images/infobutton_icon.png"> </a>
-                    </li>
-                  </ul>
-                </td>
-              </tr>
-            </tbody></table>
-          </div>
-        </div>
+        </tbody></table>
       </div>
+    </div>
+  </div>
 
 
-    </body></html>
+</body></html>

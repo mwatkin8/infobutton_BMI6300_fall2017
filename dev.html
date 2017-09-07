@@ -1,0 +1,188 @@
+<html xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+  <title>Infobutton Mock EHR</title>
+  <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico">
+
+  <link href="css/dev_style.css" rel="stylesheet" type="text/css">
+  <script src="js/script.js" type="text/javascript"></script>
+  <script type="text/javascript">
+  var arrConcept = [];
+  arrConcept.push(['PROBLISTREV', '', 'Problem list review', '']);
+  arrConcept.push(['MLREV', '', 'Medication list review', '']);
+  arrConcept.push(['LABRREV', '', 'Laboratory results review', '']);
+
+  arrConcept.push(['749198', '2.16.840.1.113883.6.88', 'Clopidogrel', 'Clopidogrel 300 MG Oral Tablet [Plavix]']);
+  arrConcept.push(['243670', '2.16.840.1.113883.6.88', 'Aspirin', 'Aspirin 81mg oral tablet']);
+  arrConcept.push(['757704', '2.16.840.1.113883.6.88', 'Simvastatin', 'Simvastatin 40mg oral tablet']);
+  arrConcept.push(['120.9', '2.16.840.1.113883.6.90', 'Angina', '']);
+  arrConcept.push(['57132-3', '2.16.840.1.113883.6.1', 'CYP2C19 Genotype test result', '']);
+
+<!coronary art>arrConcept.push(['57132-3', '2.16.840.1.113883.6.1', 'CYP2C19 Genotype test result', '']);
+  <!anterior wall ischemia>arrConcept.push(['57132-3', '2.16.840.1.113883.6.1', 'CYP2C19 Genotype test result', '']);
+  <!PCI>arrConcept.push(['57132-3', '2.16.840.1.113883.6.1', 'CYP2C19 Genotype test result', '']);
+
+  var arrXslt = [];
+
+  function getCs(code){
+    for (i in arrConcept) {
+      if (arrConcept[i][0] == code){
+        return arrConcept[i][1];
+      }
+    }
+  }
+
+  function getDn(code){
+    for (j in arrConcept) {
+      if (arrConcept[j][0] == code){
+        return arrConcept[j][2];
+      }
+    }
+  }
+
+  function getOt(code){
+    for (j in arrConcept) {
+      if (arrConcept[j][0] == code){
+        return arrConcept[j][3];
+      }
+    }
+  }
+
+  function getXslt(orgOid){
+    for (j in arrXslt) {
+      if (arrXslt[j][0] == orgOid){
+        return arrXslt[j][1];
+      }
+    }
+  }
+
+
+  function callIM(gender, age, task, mainSearchCriteriaC, labAbnormalFlag){
+    var baseUrl = 'http://service.oib.utah.edu:8080/infobutton-service/infoRequest?';
+    var organizationOID = document.getElementById("organizationId").value;
+    var performer = document.getElementById("performerId").value;
+    var organization = 'representedOrganization.id.root=' + organizationOID;
+
+    var genderParam = '&patientPerson.administrativeGenderCode.c=' + gender + '' ;
+    var ageParam = '&age.v.v=' + age + '&age.v.u=a';
+    var taskParam = '&taskContext.c.c=' + task;
+    var performerParam = '&performer=' + performer + '&informationRecipient=' + performer;
+
+    var mainSearchCriteriaParam = '&mainSearchCriteria.v.c=' + mainSearchCriteriaC + '&mainSearchCriteria.v.cs=' + getCs(mainSearchCriteriaC) + '&mainSearchCriteria.v.dn=' + getDn(mainSearchCriteriaC);
+
+    //var severityObservationParam;
+    //if (labAbnormalFlag != null){
+    //	severityObservationParam = '&interpretationCode.c.c=' + labAbnormalFlag;
+    //}
+
+    var xslt = '&xsltTransform=' + getXslt(organizationOID);
+    //var url = baseUrl + organization + genderParam + ageParam + taskParam + mainSearchCriteriaParam + xslt;
+
+    var url = baseUrl + organization + genderParam + ageParam + taskParam + mainSearchCriteriaParam + performerParam + xslt;
+    var winRef = window.open(url, '', 'width=970, height=670, status=no, location=no, toolbar=no, scrollbars=no, resizable=yes');
+    //document.getElementById('urlDisplay').value = url;
+    return false;
+  }
+  </script>
+
+</head>
+<body>
+
+
+  <div class="header">
+    <h1 class = "title">Infobutton Mock EHR&nbsp;&nbsp;&nbsp;&nbsp;
+      <select name="organizationId" id="organizationId">
+        <option selected="selected" value="medicaldecisionmaking.org">medicaldecisionmaking.org</option>
+        <option value="1.3.6.1.4.1.3768">Veterans Administration</option>
+      </select>
+    </h1>
+  </div>
+
+  <div class="row">
+
+    <div class="col-3 menu">
+      <ul>
+
+        <select name="performerId" id="performerId">
+          <option selected="selected" value="PROV">Healthcare Provider</option>
+          <option value="PAT">Patient</option>
+        </select>
+        <li>Physician</li>
+        <li>Patient</li>
+      </ul>
+    </div>
+
+    <div class="col-9">
+      Patient:<b>  JOHNSON, FRANK</b> &nbsp; &nbsp; &nbsp; &nbsp;MRN:<b> 123-45-67</b>&nbsp; &nbsp; &nbsp; &nbsp;FIN:<b> 1301800001</b>
+    </br>
+    Age: <b>64</b> &nbsp; &nbsp; &nbsp; &nbsp;Sex:<b> M</b> &nbsp; &nbsp; &nbsp; &nbsp;DOB:<b> 09/03/53</b>
+  </br>
+</br>
+Associated Diagnoses: <b>Coronary artery disease</b>
+</br>
+Author: <b>Welker, Isaac MD</b>
+</br></br>
+<b>CC: </b>Increasingly frequent eposodes of chest pain</br></br>
+
+<b>HPI: </b>Frank is a 64-year old male with coronary artery disease, who came to his physician’s office with angina symptoms. Having quit smoking at age 50, after 20 years at a pack a week, he seemed to be in excellent health. However, about two years ago he was diagnosed with angina and given a prescription for aspirin (81 mg/day), simvastatin (40 mg/day), and a recommendation for lifestyle change. At that time he started an exercise regimen and a reduced fat diet. Despite these lifestyle changes, six months ago he noted that episodes of chest pain increased to about once or twice per week. These episodes were precipitated by exercise or stress and relieved by rest. But recently the angina episodes have increased to several times per week. Last week a stress echocardiogram demonstrated anterior wall ischemia and a coronary angiography/stenting (PCI) is recommended. </br></br>
+<b>MEDICATION(S): </b></br>
+
+<ul class="problemul">
+  <li class="label">
+    Aspirin 81 MG oral tablet<a href="#" onclick="callIM('M', '64', 'MLREV', '243670', '');"> <img align="middle" title="OpenInfobutton" src="images/infobutton_icon.png"> </a>
+  </li>
+  <li class="label">
+    Simvastatin 40 MG oral tablet<a href="#" onclick="callIM('M', '64', 'MLREV', '757704', '');"> <img align="middle" title="OpenInfobutton" src="images/infobutton_icon.png"> </a>
+  </li>
+  <li class="label">
+    Clopidogrel 300 MG oral tablet<a href="#" onclick="callIM('M', '64', 'MLREV', '749198', '');"> <img align="middle" title="OpenInfobutton" src="images/infobutton_icon.png"> </a>
+  </li>
+</ul>
+
+</br>
+<b>PROBLEM LIST: </b></br>
+<ul class="problemul">
+  <li class="label">
+    Coronary artery disease<a href="#" onclick="callIM('M', '64', 'PROBLISTREV', 'I25.119', '');"> <img align="middle" title="OpenInfobutton" src="images/infobutton_icon.png"> </a>
+  </li>
+  <li class="label">
+    Angina<a href="#" onclick="callIM('M', '64', 'PROBLISTREV', '120.9', '');"> <img align="middle" title="OpenInfobutton" src="images/infobutton_icon.png"> </a>
+  </li>
+  <li class="label">
+    Anterior wall ischemia<a href="#" onclick="callIM('M', '64', 'PROBLISTREV', 'I25.9', '');"> <img align="middle" title="OpenInfobutton" src="images/infobutton_icon.png"> </a>
+  </li>
+</ul>
+
+</br>
+<b>ASSESSMENT/PLAN: </b>Recommending concomitant use of aspirin (81mg/day) and clopidogrel [Plavix] following an angiography where a stent is placed. Patient is at high risk for a clotting event immediately following a stent placement, so initiating clopidogrel with a loading dose of 300 MG one time to reach target blood levels more quickly. Ordering lab test for variations in CYP2C19 enzyme.</br></br>
+
+<b>TEST(S): </b><ul class="problemul">
+  <li class="label">
+    CYP2C19 Genotype test result<a href="#" onclick="callIM('M', '64', 'MLREV', '57132-3', '');"> <img align="middle" title="OpenInfobutton" src="images/infobutton_icon.png"> </a>
+  </li>
+</ul>
+</br>
+
+<b>PROCEDURE(S): </b><ul class="problemul">
+  <li class="label">
+    Coronary angiography/stenting (PCI)<a href="#" onclick="callIM('M', '64', 'MLREV', '243670', '');"> <img align="middle" title="OpenInfobutton" src="images/infobutton_icon.png"> </a>
+  </li>
+
+</ul>
+</br>
+<b>OTHER: </b><ul class="problemul">
+  <li class="label">
+    Clopidogrel - pharmacogenomic recommendations<a href="#" onclick="callIM('M', '64', 'MLREV', '243670', '');"> <img align="middle" title="OpenInfobutton" src="images/infobutton_icon.png"> </a>
+  </li>
+
+</ul>
+</br>
+
+</div>
+
+</div>
+
+</body>
+</html>

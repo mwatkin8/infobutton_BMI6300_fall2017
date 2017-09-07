@@ -1,0 +1,81 @@
+* {
+  box-sizing: border-box;
+}
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+[class*="col-"] {
+  float: left;
+  padding: 15px;
+}
+.col-1 {width: 8.33%;}
+.col-2 {width: 16.66%;}
+.col-3 {
+  width: 17%;
+  height: 100%;
+  background-color: #293D4C;
+}
+.col-4 {width: 33.33%;}
+.col-5 {width: 41.66%;}
+.col-6 {width: 50%;}
+.col-7 {width: 58.33%;}
+.col-8 {width: 66.66%;}
+.col-9 {width: 80%;}
+.col-10 {width: 83.33%;}
+.col-11 {width: 91.66%;}
+.col-12 {width: 100%;}
+html {
+  font-family: "Lucida Sans", sans-serif;
+}
+.header {
+  height: 8%;
+  background: url('../images/cerner.jpg') no-repeat;
+	background-size: 50px 52px;
+  background-color: #248ACA;
+  background-position: 1% 50%;
+  color: #ffffff;
+  padding: 1px;
+}
+
+.title{
+  padding-left: 70px;
+  height: 8%
+}
+
+.menu ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+.menu li {
+  padding: 8px;
+  margin-bottom: 7px;
+  background-color: #48555D;
+  color: #ffffff;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+.menu li:hover {
+  background-color: #0B5173;
+}
+
+.problemul{
+  list-style: none; margin: 0px; padding: 0px }
+}
+
+.li { padding-left: 3px 0px;
+}
+
+.label {
+  padding-top: 4px;
+  text-align:left;
+  border-left: 0px; text-indent: 30px;}
+
+img { vertical-align: middle; text-decoration: none; padding: 0px 0px 0px 0px; margin:  -12px -0px -12px -5px}
+
+a { text-decoration: none; color: #266837 }
+a.resource { background: #f8f8f8; margin: 0px; padding: 4px 7px 6px 5px; border: 1px solid #ADD08F }
+a.resource:hover { background-color: #fdfdfd }
+a span { text-decoration: underline }
+a img { vertical-align: middle; text-decoration: none; padding: 0px 0px 0px 0px; margin:  -12px -0px -12px -5px}

@@ -1,15 +1,20 @@
 body {
 	min-width: 700px;
 	background: #f0f0f0;
-	font: 12px verdana; padding: 0px 75px; margin: 0px;
+	font: 12px verdana; padding: 0px 75px; margin: 10px;
 }
 
 #shadow { background: #f0f0f0 url('../images/shL.png') top left repeat-y; padding-left: 21px; }
 #shadow2 { background: #f0f0f0 url('../images/shR.png') top right repeat-y; padding-right: 21px; }
 
-h2 { font-weight: bold; font-size: 18px; margin: 4px 2px 4px 0px; padding: 8px 8px; color: #fff; background: #001155 }
+h2 { font-weight: bold; font-size: 18px; margin: 4px 0px 0px 0px; padding: 8px 8px; color: #fff; background: #001155 }
 a:visited, a:active, a:focus, a:hover { color: #00f }
 img { border: none }
+
+p{
+	padding-left: 10px;
+	padding-top: 10px;
+}
 
 #footer {
 	background: transparent url('../images/shBL.png') bottom left no-repeat;
@@ -33,8 +38,9 @@ img { border: none }
 #footer div div span { background: #ccc; color: #fff; padding: 5px 24px; }
 
 #header {
-	padding: 70px 0px 0px 0px; margin: 0px;
-	background:#ffffff url('../images/project_logo_medium.jpg') no-repeat left top;
+	padding: 100px 100px 0px 0px; margin: 0px;
+	background:#ffffff url('../images/cerner.jpg') left no-repeat;
+	background-size: 100% 100%;
 }
 
 #header ul {
@@ -62,14 +68,14 @@ img { border: none }
 
 	#main {
 		background: #fdfdfd;
-		padding: 10px 40px; margin: 0px;
+		padding: 0px 0px; margin: 0px;
 		border-color: #e8e8e8;
 		border-style: solid;
 		border-width: 0px 0px 0px 0px;
 	}
 
 	table { margin: 0px; border-collapse: collapse; border-spacing: 0px; width: 100% }
-	table td { color: #001155; line-height: 16px; vertical-align: top; border: 4px solid #fdfdfd; border-width: 0px 4px 4px 0px; padding: 8px; background: #eeeeff }
+	table td { color: #001155; line-height: 40px; vertical-align: top; border: 4px solid #fdfdfd; border-width: 0px 4px 4px 0px; padding: 8px; background: #eeeeff }
 	table td.label { font-weight: bold; color: #001155; border-right: 0px; }
 	table td .topLabel { font-weight: bold; color: #6d904f; padding: 0px 0px 10px 0px; margin: 0px; }
 	table th { text-align: left; background: #9Dc07F; color: #fbfbfb; border: 4px solid #fdfdfd; border-left-width: 0px; padding: 10px }
