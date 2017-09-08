@@ -20,11 +20,21 @@
   arrConcept.push(['120.9', '2.16.840.1.113883.6.90', 'Angina', '']);
   arrConcept.push(['57132-3', '2.16.840.1.113883.6.1', 'CYP2C19 Genotype test result', '']);
 
-<!coronary art>arrConcept.push(['57132-3', '2.16.840.1.113883.6.1', 'CYP2C19 Genotype test result', '']);
-  <!anterior wall ischemia>arrConcept.push(['57132-3', '2.16.840.1.113883.6.1', 'CYP2C19 Genotype test result', '']);
-  <!PCI>arrConcept.push(['57132-3', '2.16.840.1.113883.6.1', 'CYP2C19 Genotype test result', '']);
+  arrConcept.push(['I25.119', '2.16.840.1.113883.6.90', 'Coronary artery disease', '']);
+  arrConcept.push(['I25.9', '2.16.840.1.113883.6.90', 'Anterior wall ischemia', '']);
+  arrConcept.push(['76642-8', '2.16.840.1.113883.6.1', 'Coronary angiography/stenting (PCI)', '']);
 
   var arrXslt = [];
+  arrXslt.push(['1.3.6.1.4.1.3768', 'Infobutton_UI_VA']);
+  arrXslt.push(['1.3.6.1.4.1.3768.97', 'Infobutton_UI_VA']);
+  arrXslt.push(['1.3.6.1.4.1.3768.86', 'Infobutton_UI_VA']);
+  arrXslt.push(['MBL', 'Infobutton_UI_VA']);
+  arrXslt.push(['1.3.6.1.4.1.9328', 'Infobutton_UI_VA']);
+  arrXslt.push(['1.3.6.1.4.1.5884', 'Infobutton_UI']);
+  arrXslt.push(['AMIA', 'Infobutton_UI']);
+  arrXslt.push(['2.16.840.1.113883.3.1951', 'Infobutton_UI']);
+  arrXslt.push(['http://lvhn.org', 'Infobutton_UI']);
+  arrXslt.push(['http://medicaldecisionmaking.org', 'Infobutton_UI']);
 
   function getCs(code){
     for (i in arrConcept) {
@@ -104,13 +114,10 @@
 
     <div class="col-3 menu">
       <ul>
-
-        <select name="performerId" id="performerId">
-          <option selected="selected" value="PROV">Healthcare Provider</option>
-          <option value="PAT">Patient</option>
+        <button id="performerId" onclick="selectPhysician(this);">Physician</button>
+        <button id="performerId" onclick="selectPatient(this);">Patient</button>
+        <select name="performerId" id="performerId" style="visibility: hidden;">
         </select>
-        <li>Physician</li>
-        <li>Patient</li>
       </ul>
     </div>
 
@@ -160,14 +167,14 @@ Author: <b>Welker, Isaac MD</b>
 
 <b>TEST(S): </b><ul class="problemul">
   <li class="label">
-    CYP2C19 Genotype test result<a href="#" onclick="callIM('M', '64', 'MLREV', '57132-3', '');"> <img align="middle" title="OpenInfobutton" src="images/infobutton_icon.png"> </a>
+    CYP2C19 Genotype test result<a href="#" onclick="callIM('M', '64', 'GENEREV', '57132-3', '');"> <img align="middle" title="OpenInfobutton" src="images/infobutton_icon.png"> </a>
   </li>
 </ul>
 </br>
 
 <b>PROCEDURE(S): </b><ul class="problemul">
   <li class="label">
-    Coronary angiography/stenting (PCI)<a href="#" onclick="callIM('M', '64', 'MLREV', '243670', '');"> <img align="middle" title="OpenInfobutton" src="images/infobutton_icon.png"> </a>
+    Coronary angiography/stenting (PCI)<a href="#" onclick="callIM('M', '64', 'LABOE', '76642-8', '');"> <img align="middle" title="OpenInfobutton" src="images/infobutton_icon.png"> </a>
   </li>
 
 </ul>
