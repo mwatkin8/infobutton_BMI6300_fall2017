@@ -13,7 +13,7 @@
 .col-1 {width: 8.33%;}
 .col-2 {width: 16.66%;}
 .col-3 {
-  width: 17%;
+  width: 10%;
   height: 100%;
   background-color: #293D4C;
 }
@@ -31,8 +31,8 @@ html {
 }
 .header {
   height: 8%;
-  background: url('../images/cerner.jpg') no-repeat;
-	background-size: 50px 52px;
+  background: url('../images/cerner-logo.png') no-repeat;
+	background-size: 52px 52px;
   background-color: #248ACA;
   background-position: 1% 50%;
   color: #ffffff;
