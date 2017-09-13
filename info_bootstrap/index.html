@@ -40,12 +40,15 @@
   arrConcept.push(['749198', '2.16.840.1.113883.6.88', 'Clopidogrel', 'Clopidogrel 300 MG Oral Tablet [Plavix]']);
   arrConcept.push(['243670', '2.16.840.1.113883.6.88', 'Aspirin', 'Aspirin 81mg oral tablet']);
   arrConcept.push(['757704', '2.16.840.1.113883.6.88', 'Simvastatin', 'Simvastatin 40mg oral tablet']);
-  arrConcept.push(['120.9', '2.16.840.1.113883.6.90', 'Angina', '']);
-  arrConcept.push(['57132-3', '2.16.840.1.113883.6.1', 'CYP2C19 Genotype test result', '']);
 
-  arrConcept.push(['I25.119', '2.16.840.1.113883.6.90', 'Coronary artery disease', '']);
-  arrConcept.push(['I25.9', '2.16.840.1.113883.6.90', 'Anterior wall ischemia', '']);
-  arrConcept.push(['76642-8', '2.16.840.1.113883.6.1', 'Coronary angiography/stenting (PCI)', '']);
+  arrConcept.push(['I20.9', '2.16.840.1.113883.6.96', 'Angina', '']);
+  arrConcept.push(['53741008', '2.16.840.1.113883.6.96', 'Coronary artery disease', '']);
+  arrConcept.push(['413552002', '2.16.840.1.113883.6.96', 'Anterior wall ischemia', '']);
+
+  arrConcept.push(['415070008', '2.16.840.1.113883.6.1', 'Coronary angiography/stenting (PCI)', '']); //33367005
+  arrConcept.push(['', '2.16.840.1.113883.6.1', 'CYP2C19', '']);
+  arrConcept.push(['', '2.16.840.1.113883.6.1', 'clopidogrel', '']);
+
 
   var arrXslt = [];
   arrXslt.push(['1.3.6.1.4.1.3768', 'Infobutton_UI_VA']);
@@ -56,8 +59,7 @@
   arrXslt.push(['1.3.6.1.4.1.5884', 'Infobutton_UI']);
   arrXslt.push(['AMIA', 'Infobutton_UI']);
   arrXslt.push(['2.16.840.1.113883.3.1951', 'Infobutton_UI']);
-  arrXslt.push(['http://lvhn.org', 'Infobutton_UI']);
-  arrXslt.push(['http://medicaldecisionmaking.org', 'Infobutton_UI']);
+  arrXslt.push(['medicaldecisionmaking.org', 'Infobutton_UI']);
 
   function getCs(code){
     for (i in arrConcept) {
@@ -110,10 +112,29 @@
     //	severityObservationParam = '&interpretationCode.c.c=' + labAbnormalFlag;
     //}
 
-    var xslt = '&xsltTransform=' + getXslt(organizationOID);
+    //var xslt = '&xsltTransform=' + getXslt(organizationOID);
     //var url = baseUrl + organization + genderParam + ageParam + taskParam + mainSearchCriteriaParam + xslt;
 
-    var url = baseUrl + organization + genderParam + ageParam + taskParam + mainSearchCriteriaParam + performerParam + xslt;
+    var url = baseUrl + organization + genderParam + ageParam + taskParam + mainSearchCriteriaParam + performerParam;  //+ xslt;
+    var winRef = window.open(url, '', 'width=970, height=670, status=no, location=no, toolbar=no, scrollbars=no, resizable=yes');
+    //document.getElementById('urlDisplay').value = url;
+    return false;
+  }
+
+  function callPharm(gender, age, task, mainSearchCriteriaC, labAbnormalFlag){
+    var baseUrl = 'http://service.oib.utah.edu:8080/infobutton-service/infoRequest?';
+    var organizationOID = document.getElementById("organizationId").value;
+    var performer = document.getElementById("performerId").value;
+    var organization = 'representedOrganization.id.root=' + organizationOID;
+
+    var genderParam = '&patientPerson.administrativeGenderCode.c=' + gender + '' ;
+    var ageParam = '&age.v.v=' + age + '&age.v.u=a';
+    var taskParam = '&taskContext.c.c=' + task;
+    var performerParam = '&performer=' + performer + '&informationRecipient=' + performer;
+
+    var mainSearchCriteriaParam = '&mainSearchCriteria.v.cs=2.16.840.1.113883.6.1&mainSearchCriteria.v.dn=clopidogrel';
+
+    var url = baseUrl + organization + genderParam + ageParam + taskParam + mainSearchCriteriaParam + performerParam;  //+ xslt;
     var winRef = window.open(url, '', 'width=970, height=670, status=no, location=no, toolbar=no, scrollbars=no, resizable=yes');
     //document.getElementById('urlDisplay').value = url;
     return false;
@@ -125,21 +146,20 @@
 
 <body>
 
-  <nav class="navbar-left navbar-expand-md navbar-dark fixed-top bg-dark">
+  <nav class="navbar-left navbar-expand-md navbar-dark fixed-top bg-dark" style="padding-top:5px;padding-bottom:5px;">
     <a class="navbar-brand" href="#background">&nbsp;&nbsp;<img src="images/cerner-logo.png" height="35" width=45""></img>&nbsp;&nbsp;Infobutton Mock EHR</a>
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <div style="padding-top:8px;"class="btn-group" data-toggle="buttons">
-      <label class="btn btn-primary active">
-        <input type="radio" name="options" id="performerId" onclick="selectPhysician(this);"autocomplete="off" checked> Provider
-      </label>
-      <label class="btn btn-primary">
-        <input type="radio" name="options" id="performerId" onclick="selectPhysician(this);"autocomplete="off"> Patient
-      </label>
-    </div>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+    <i><font color="white">Information Audience</font></i>
+    	<select name="performerId" id="performerId">
+    		<option selected="selected" value="PROV">Healthcare provider</option>
+    		<option value="PAT">Patient</option>
+    	</select>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <i><font color="white">EHR Source: </font></i>
     <select name="organizationId" id="organizationId">
-      <option selected="selected" value="medicaldecisionmaking.org">medicaldecisionmaking.org</option>
+      <option selected="selected" value="medicaldecisionmaking.org">Medical Decision Making Class</option>
       <option value="1.3.6.1.4.1.3768">Veterans Administration</option>
     </select>
     <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
@@ -212,7 +232,7 @@
 </br>
 Associated Diagnoses: <b>Coronary artery disease</b>
 </br>
-Author: <b>Welker, Isaac MD</b>
+Author: <b>Latu, Harvey MD</b>
 
 <div class="table-responsive">
 </br>
@@ -237,13 +257,13 @@ Author: <b>Welker, Isaac MD</b>
 <b>PROBLEM LIST: </b></br>
 <ul id="problems" class="problemul, anchor">
   <li class="label">
-    Coronary artery disease<a href="#" onclick="callIM('M', '64', 'PROBLISTREV', 'I25.119', '');"> <img align="middle" title="OpenInfobutton" src="images/infobutton_icon.png"> </a>
+    Coronary artery disease<a href="#" onclick="callIM('M', '64', 'PROBLISTREV', '53741008', '');"> <img align="middle" title="OpenInfobutton" src="images/infobutton_icon.png"> </a>
   </li>
   <li class="label">
-    Angina<a href="#" onclick="callIM('M', '64', 'PROBLISTREV', '120.9', '');"> <img align="middle" title="OpenInfobutton" src="images/infobutton_icon.png"> </a>
+    Angina<a href="#" onclick="callIM('M', '64', 'PROBLISTREV', 'I20.9', '');"> <img align="middle" title="OpenInfobutton" src="images/infobutton_icon.png"> </a>
   </li>
   <li class="label">
-    Anterior wall ischemia<a href="#" onclick="callIM('M', '64', 'PROBLISTREV', 'I25.9', '');"> <img align="middle" title="OpenInfobutton" src="images/infobutton_icon.png"> </a>
+    Anterior wall ischemia<a href="#" onclick="callIM('M', '64', 'PROBLISTREV', '413552002', '');"> <img align="middle" title="OpenInfobutton" src="images/infobutton_icon.png"> </a>
   </li>
 </ul>
 
@@ -253,7 +273,7 @@ Author: <b>Welker, Isaac MD</b>
 <b>TEST(S): </b>
 <ul id="tests" class="problemul, anchor">
   <li class="label">
-    CYP2C19 Genotype test result<a href="#" onclick="callIM('M', '64', 'GENEREV', '57132-3', '');"> <img align="middle" title="OpenInfobutton" src="images/infobutton_icon.png"> </a>
+    CYP2C19 Genotype test result<a href="#" onclick="callIM('M', '64', 'GENEREV', '', '');"> <img align="middle" title="OpenInfobutton" src="images/infobutton_icon.png"> </a>
   </li>
 </ul>
 </br>
@@ -261,7 +281,7 @@ Author: <b>Welker, Isaac MD</b>
 <b>PROCEDURE(S): </b>
 <ul id="procedures" class="problemul, anchor">
   <li class="label">
-    Coronary angiography/stenting (PCI)<a href="#" onclick="callIM('M', '64', 'LABOE', '76642-8', '');"> <img align="middle" title="OpenInfobutton" src="images/infobutton_icon.png"> </a>
+    Coronary angiography/stenting (PCI)<a href="#" onclick="callIM('M', '64', 'LABRREV', ' 415070008', '');"> <img align="middle" title="OpenInfobutton" src="images/infobutton_icon.png"> </a> //3367005
   </li>
 
 </ul>
@@ -269,7 +289,7 @@ Author: <b>Welker, Isaac MD</b>
 <b>OTHER: </b>
 <ul id="other" class="problemul, anchor">
   <li class="label">
-    Clopidogrel - pharmacogenomic recommendations<a href="#" onclick="callIM('M', '64', 'MLREV', '243670', '');"> <img align="middle" title="OpenInfobutton" src="images/infobutton_icon.png"> </a>
+    Clopidogrel - pharmacogenomic recommendations<a href="#" onclick="callPharm('M', '64', 'MLREV', 'clopidogrel', '');"> <img align="middle" title="OpenInfobutton" src="images/infobutton_icon.png"> </a>
   </li>
 </br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br>
 

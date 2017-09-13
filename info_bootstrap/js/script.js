@@ -67,13 +67,3 @@ function selectFragment(el) {
 	// Select the clicked list item
 	el.className = "selected"
 }
-
-function selectPhysician(button){
-	document.getElementById("performerId").value="PROV";
-	button.value="PROV";
-}
-
-function selectPatient(button){
-	document.getElementById("performerId").value="PAT";
-	button.value="PAT";
-}
