@@ -1,3 +1,7 @@
+#Files
+Finished project is in info_bootstrap directory as index.html. Appropriate css and js files are also included in that dir.
+
+
 # InfoButton Assignment for BMI6300 Fall 2017
 
 A mock EHR website coupled with HL7-compliant RESTful requests to OpenInfobutton, along with a display for the OpenInfobutton response.  Grading will be based on the EHR mockup, placement of infobutton/links on the EHR, functional HL7-compliant infobutton RESTful requests, and successful parsing/display of the OpenInfobutton XML/JSON response. 
