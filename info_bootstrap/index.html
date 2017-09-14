@@ -41,11 +41,11 @@
   arrConcept.push(['243670', '2.16.840.1.113883.6.88', 'Aspirin', 'Aspirin 81mg oral tablet']);
   arrConcept.push(['757704', '2.16.840.1.113883.6.88', 'Simvastatin', 'Simvastatin 40mg oral tablet']);
 
-  arrConcept.push(['I20.9', '2.16.840.1.113883.6.96', 'Angina', '']);
-  arrConcept.push(['53741008', '2.16.840.1.113883.6.96', 'Coronary artery disease', '']);
-  arrConcept.push(['413552002', '2.16.840.1.113883.6.96', 'Anterior wall ischemia', '']);
+  arrConcept.push(['I20.9', '2.16.840.1.113883.6.90', 'angina', '']);
+  arrConcept.push(['I25.9', '2.16.840.1.113883.6.90', 'Coronary artery disease', '']);
+  arrConcept.push(['I25.89', '2.16.840.1.113883.6.90', 'Anterior wall ischemia', '']);
 
-  arrConcept.push(['415070008', '2.16.840.1.113883.6.1', 'Coronary angiography/stenting (PCI)', '']); //33367005
+  arrConcept.push(['Z98.61', '2.16.840.1.113883.6.90', 'PCI', '']);
   arrConcept.push(['', '2.16.840.1.113883.6.1', 'CYP2C19', '']);
   arrConcept.push(['', '2.16.840.1.113883.6.1', 'clopidogrel', '']);
 
@@ -139,6 +139,28 @@
     //document.getElementById('urlDisplay').value = url;
     return false;
   }
+
+  function callPatCYP2C19(gender, age, task, mainSearchCriteriaC, labAbnormalFlag){
+    var baseUrl = 'http://service.oib.utah.edu:8080/infobutton-service/infoRequest?';
+    var organizationOID = document.getElementById("organizationId").value;
+    var performer = document.getElementById("performerId").value;
+    var organization = 'representedOrganization.id.root=' + organizationOID;
+
+    var genderParam = '&patientPerson.administrativeGenderCode.c=' + gender + '' ;
+    var ageParam = '&age.v.v=' + age + '&age.v.u=a';
+    var taskParam = '&taskContext.c.c=' + task;
+
+    var performerParam = '&performer=' + performer + '&informationRecipient=' + performer;
+    if (performer == 'PAT'){
+      performerParam = '&performer=PROV' + '&informationRecipient=' + performer;
+    }
+    var mainSearchCriteriaParam = '&mainSearchCriteria.v.c=' + mainSearchCriteriaC + '&mainSearchCriteria.v.cs=' + getCs(mainSearchCriteriaC) + '&mainSearchCriteria.v.dn=' + getDn(mainSearchCriteriaC);
+
+    var url = baseUrl + organization + genderParam + ageParam + taskParam + mainSearchCriteriaParam + performerParam;  //+ xslt;
+    var winRef = window.open(url, '', 'width=970, height=670, status=no, location=no, toolbar=no, scrollbars=no, resizable=yes');
+    //document.getElementById('urlDisplay').value = url;
+    return false;
+  }
   </script>
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
@@ -207,11 +229,11 @@
               <div class="bg-light p-4">
                 <div class="collapse-content">
                   <h4><i style="position:fixed-right; padding:0px; margin-top:0px;">Medical Contacts</i></h4>
-                  <img style="float:left; padding-bottom:30px;"src="images/frank.jpg" width="80" height="50" class="img-fluid rounded-circle" alt="Generic placeholder thumbnail">
-                </br><img style="float:left;"src="images/latu.png" width="80" height="50" class="img-fluid rounded-circle" alt="Generic placeholder thumbnail">
+                  <img style="float:left; padding-top:0px;margin-bottom:17px;"src="images/frank.jpg" width="80" height="50" class="img-fluid rounded-circle" alt="Generic placeholder thumbnail">
+                  <img style="float:left;"src="images/latu.png" width="80" height="50" class="img-fluid rounded-circle" alt="Generic placeholder thumbnail">
 
-                <p>&nbsp;&nbsp;Hershaw, Doug MD</br>&nbsp;&nbsp;<i>Merrill Gappmayer Family Medical Center</i> - Primary Care</br>&nbsp;&nbsp;Last Appt: 09/06/17 (801)256-8741
-                </br>  </br>&nbsp;&nbsp;Latu, Harvey MD</br>&nbsp;&nbsp;<i>Utah Valley Regional Medical Center</i> - Cardiology</br>&nbsp;&nbsp;Last Appt: 09/10/17 (801)522-4319
+                <p>&nbsp;&nbsp;Hershaw, Doug MD<br/>&nbsp;&nbsp;<i>Merrill Gappmayer Family Medical Center</i> - Primary Care<br/>&nbsp;&nbsp;Last Appt: <b>09/06/17</b> (801)256-8741
+                <br/>  <br/>&nbsp;&nbsp;Latu, Harvey MD<br/>&nbsp;&nbsp;<i>Utah Valley Regional Medical Center</i> - Cardiology<br/>&nbsp;&nbsp;Last Appt: <b>09/10/17</b> (801)522-4319
 
               </p>
             </div>
@@ -226,20 +248,20 @@
       </div>
     </span>
 
-  </br>
+  <br/>
   Age: <b>64</b> &nbsp; &nbsp; &nbsp; &nbsp;Sex:<b> M</b> &nbsp; &nbsp; &nbsp; &nbsp;DOB:<b> 09/03/53</b>
-</br>
-</br>
+<br/>
+<br/>
 Associated Diagnoses: <b>Coronary artery disease</b>
-</br>
+<br/>
 Author: <b>Latu, Harvey MD</b>
 
 <div class="table-responsive">
-</br>
-<b>CC: </b>Increasingly frequent eposodes of chest pain</br></br>
+<br/>
+<b>CC: </b>Increasingly frequent eposodes of chest pain<br/><br/>
 
-<b>HPI: </b>Frank is a 64-year old male with coronary artery disease, who came to his physician’s office with angina symptoms. Having quit smoking at age 50, after 20 years at a pack a week, he seemed to be in excellent health. However, about two years ago he was diagnosed with angina and given a prescription for aspirin (81 mg/day), simvastatin (40 mg/day), and a recommendation for lifestyle change. At that time he started an exercise regimen and a reduced fat diet. Despite these lifestyle changes, six months ago he noted that episodes of chest pain increased to about once or twice per week. These episodes were precipitated by exercise or stress and relieved by rest. But recently the angina episodes have increased to several times per week. Last week a stress echocardiogram demonstrated anterior wall ischemia and a coronary angiography/stenting (PCI) is recommended. </br></br>
-<b>MEDICATION(S): </b></br>
+<b>HPI: </b>Frank is a 64-year old male with coronary artery disease, who came to his physician’s office with angina symptoms. Having quit smoking at age 50, after 20 years at a pack a week, he seemed to be in excellent health. However, about two years ago he was diagnosed with angina and given a prescription for aspirin (81 mg/day), simvastatin (40 mg/day), and a recommendation for lifestyle change. At that time he started an exercise regimen and a reduced fat diet. Despite these lifestyle changes, six months ago he noted that episodes of chest pain increased to about once or twice per week. These episodes were precipitated by exercise or stress and relieved by rest. But recently the angina episodes have increased to several times per week. Last week a stress echocardiogram demonstrated anterior wall ischemia and a coronary angiography/stenting (PCI) is recommended. <br/><br/>
+<b>MEDICATION(S): </b><br/>
 
 <ul id="medications" class="problemul, anchor">
   <li class="label">
@@ -253,48 +275,48 @@ Author: <b>Latu, Harvey MD</b>
   </li>
 </ul>
 
-</br>
-<b>PROBLEM LIST: </b></br>
+<br/>
+<b>PROBLEM LIST: </b><br/>
 <ul id="problems" class="problemul, anchor">
   <li class="label">
-    Coronary artery disease<a href="#" onclick="callIM('M', '64', 'PROBLISTREV', '53741008', '');"> <img align="middle" title="OpenInfobutton" src="images/infobutton_icon.png"> </a>
+    Coronary artery disease<a href="#" onclick="callIM('M', '64', 'PROBLISTREV', 'I25.9', '');"> <img align="middle" title="OpenInfobutton" src="images/infobutton_icon.png"> </a>
   </li>
   <li class="label">
     Angina<a href="#" onclick="callIM('M', '64', 'PROBLISTREV', 'I20.9', '');"> <img align="middle" title="OpenInfobutton" src="images/infobutton_icon.png"> </a>
   </li>
   <li class="label">
-    Anterior wall ischemia<a href="#" onclick="callIM('M', '64', 'PROBLISTREV', '413552002', '');"> <img align="middle" title="OpenInfobutton" src="images/infobutton_icon.png"> </a>
+    Anterior wall ischemia<a href="#" onclick="callIM('M', '64', 'PROBLISTREV', 'I25.89', '');"> <img align="middle" title="OpenInfobutton" src="images/infobutton_icon.png"> </a>
   </li>
 </ul>
 
-</br>
-<b id="plan" class="anchor">ASSESSMENT/PLAN: </b>Recommending concomitant use of aspirin (81mg/day) and clopidogrel [Plavix] following an angiography where a stent is placed. Patient is at high risk for a clotting event immediately following a stent placement, so initiating clopidogrel with a loading dose of 300 MG one time to reach target blood levels more quickly. Ordering lab test for variations in CYP2C19 enzyme.</br></br>
+<br/>
+<b id="plan" class="anchor">ASSESSMENT/PLAN: </b>Recommending concomitant use of aspirin (81mg/day) and clopidogrel [Plavix] following an angiography where a stent is placed. Patient is at high risk for a clotting event immediately following a stent placement, so initiating clopidogrel with a loading dose of 300 MG one time to reach target blood levels more quickly. Ordering lab test for variations in CYP2C19 enzyme.<br/><br/>
 
 <b>TEST(S): </b>
 <ul id="tests" class="problemul, anchor">
   <li class="label">
-    CYP2C19 Genotype test result<a href="#" onclick="callIM('M', '64', 'GENEREV', '', '');"> <img align="middle" title="OpenInfobutton" src="images/infobutton_icon.png"> </a>
+    CYP2C19 Genotype test result<a href="#" onclick="callPatCYP2C19('M', '64', 'GENEREV', '', '');"> <img align="middle" title="OpenInfobutton" src="images/infobutton_icon.png"> </a>
   </li>
 </ul>
-</br>
+<br/>
 
 <b>PROCEDURE(S): </b>
 <ul id="procedures" class="problemul, anchor">
   <li class="label">
-    Coronary angiography/stenting (PCI)<a href="#" onclick="callIM('M', '64', 'LABRREV', ' 415070008', '');"> <img align="middle" title="OpenInfobutton" src="images/infobutton_icon.png"> </a> //3367005
+    Coronary angiography/stenting (PCI)<a href="#" onclick="callIM('M', '64', 'LABRREV', 'Z98.61', '');"> <img align="middle" title="OpenInfobutton" src="images/infobutton_icon.png"> </a> <!--3367005-->
   </li>
 
 </ul>
-</br>
+<br/>
 <b>OTHER: </b>
 <ul id="other" class="problemul, anchor">
   <li class="label">
     Clopidogrel - pharmacogenomic recommendations<a href="#" onclick="callPharm('M', '64', 'MLREV', 'clopidogrel', '');"> <img align="middle" title="OpenInfobutton" src="images/infobutton_icon.png"> </a>
   </li>
-</br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br>
+<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
 
 </ul>
-</br>
+<br/>
 </div>
 </main>
 </div>
